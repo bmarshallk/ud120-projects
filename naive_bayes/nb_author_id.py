@@ -25,7 +25,30 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 
 #########################################################
-### your code goes here ###
+### Import libraries ###
+import numpy as np
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+#data-array
+features_train
+
+#label-array
+labels_train
+
+#Set the classifier and fit it to the training data
+classifier = GaussianNB()
+t0 = time()
+classifier.fit(features_train, labels_train)
+print 'Training time: ', round(time()-t0,3), 's'
+
+#Report accuracy by comparing guessed labels vs known-labels on the test set
+t1 = time()
+labels_predicted = classifier.predict(features_test)
+print 'Predicting time: ', round(time()-t1,3), 's'
+score = accuracy_score(labels_test, labels_predicted, normalize=True)
+print 'The accuracy is: %s' % score
+
 
 
 #########################################################
